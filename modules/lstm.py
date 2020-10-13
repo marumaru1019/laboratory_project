@@ -3,6 +3,8 @@ from tensorflow.keras.layers import Dense, Activation
 from tensorflow.keras.layers import LSTM
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.layers import Dropout
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -19,6 +21,7 @@ def show(data):
     plt.show()
 
 # get x,y
+# グラフ描画のためのx,yを取得
 
 
 def get_xy(data):
@@ -45,6 +48,7 @@ def down_sampling(y, scale):  # y must series data =>pdの一次元データ (n,
     plt.figure()
     plt.plot(range(0, len(y_down)), y_down, color="b", label="row_data")
     plt.show()
+    return y_down
 
 
 # data_shape => (sample,timesteps,feature_num)
@@ -79,44 +83,45 @@ def one_hot(label):
     return one_hot_label
 
 
-def split(data, label):
+def split(x_train, y_train):  # x_train=>data y_train=>labels
     choice = int(input("シャッフルする:1 シャッフルしない:2"))
     test_size = float(input("testサイズを選んでください"))
     cho = True
-    while cho = True:
+    while cho == True:
         if choice == 1:
             X_train, X_test, Y_train, Y_test = train_test_split(
                 x_train, y_train, test_size=test_size, shuffle=True, random_state=42)
             cho = False
         elif choice == 2:
             X_train, X_test, Y_train, Y_test = train_test_split(
-                x_train, y_train, train_size=test_size, shuffle=False)
+                x_train, y_train, test_size=test_size, shuffle=False)
             cho = False
         else:
             print("please select 1 or 2")
     return X_train, X_test, Y_train, Y_test
 
+# エラーが起きる
 
-def make_lstm(train, label):
+
+def make_lstm(X_train, Y_train):  # X_train=>seq  Y_train=>label
     n_hidden = int(input("How hidden number you want to?"))
     # モデル構築
+    optimizer = RMSprop()
     model = Sequential()
-    # パディングの値を指定してMaskingレイヤーを作成する
-    model.add(LSTM(
-        n_hidden, input_shape=(train[1], train[2]),
-        return_sequences=False))  # seq2seqはTrue
-    model.add(Dense(label.shape[1]))
+    model.add(LSTM(n_hidden, input_shape=(
+        X_train.shape[1], X_train.shape[2]), return_sequences=False))  # trueはseq2seq
+    model.add(Dropout(0.2))
+    model.add(Dense(Y_train.shape[1]))
     model.add(Activation("softmax"))
     model.compile(loss="categorical_crossentropy",
-                  optimizer="adam", metrics="accuracy")
+                  optimizer=optimizer, metrics=['accuracy'])
     model.summary()
-    return model
 
 
-def fit_model(X_train, Y_train):
+def fit_model(X_train, Y_train, model):
     bach_size = int(input("select batch_size:"))
     epochs = int(input("select epochs"))
-    history = model.fit(X_train, Y_train, batch_size=10, epochs=30)
+    history = model.fit(X_train, Y_train, batch_size=batch_size, epochs=epochs)
 
 
 def plot_history(history):
