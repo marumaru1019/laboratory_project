@@ -1,0 +1,71 @@
+<h1>SMA触覚センサを用いた触対象の分類</h1>
+
+<h2>第1章:はじめに</h2>
+<h3>1.1:研究背景</h3>
+<ul>
+    <li>arやvrの発達、コロナによるリモートワークでより触覚の情報が求められている←現実に近い体験</li>
+    <li>聴覚や視覚のセンシングに比べて触覚については開発が遅れている</li>
+    <li>SMAの特性を利用することで力を電気抵抗値として取り出せることがわかっている</li>
+</ul>
+<h3>1.2:研究目的</h3>
+<ul>
+    <li>触対象をなぞることで触覚センシングができる</li>
+    <li>触覚情報が時系列データでとれるのでlstmを使って分類をする</li>
+</ul>
+<h3>1.3:論文の構成</h3>
+
+<h2>第2章:從來研究</h2>
+<h3><a  href="https://search.ieice.org/bin/pdf_link.php?category=C&lang=J&year=2019&fname=j102-c_9_241&abst=">2.1:微小振動する形状記憶合金ワイヤを用いた触覚センサ</a></h3>
+<h3><a href="https://ieeexplore-ieee-org.ez.wul.waseda.ac.jp/document/7758088">2.2:Robust material classification with a
+        tactile skin using deep learning</a></h3>
+<h3><a
+        href="https://www.iplab.cs.tsukuba.ac.jp/paper/poster/agatsuma_robomech2018.pdf">2.3:無線型加速度センサと畳み込みニューラルネットワークを用いた触対象の分類</a>
+</h3>
+<h3><a href="https://ieeexplore-ieee-org.ez.wul.waseda.ac.jp/document/6976916">2.4:Texture Classification Using 2D LSTM
+        Networks</a></h3>
+
+
+<h2>第3章:研究の原理</h2>
+<h3>3.1:SMAの特性</h3>
+<ul>
+    <li>形状記憶効果</li>
+    <li>超弾性特性←とくにR相での現象について述べる</li>
+</ul>
+<h3>3.2'リカレントニュ＝ラルネットワーク</h3>
+<h3>3.3:LSTM</h3>
+
+<h2>第4章.SMA触覚センサの作製</h2>
+<h3>4.1:SMA触覚センサの作製</h3>
+<ul>
+    <li>どのような材料で作っているか</li>
+</ul>
+<h3>4.2:動作原理</h3>
+<ul>
+    <li>職対象の表面をなぞることで触覚情報を収集している</li>
+</ul>
+
+<h2>第5章.触対象の分類実験</h2>
+<h3>5.1:実験概要</h3>
+<ul>
+    <li>実験方法</li>
+    <li>実験装置</li>
+    <li>触対象</li>
+</ul>
+<h3>5.2:データの収集と前処理</h3>
+<ul>
+    <li>取れるデータの形状(グラフで説明)</li>
+    <li>lstmに入れるためにした処理(shapeの変更と標準化)</li>
+</ul>
+<h3>5.3:分類結果</h3>
+<ul>
+    <li>ヒートマップでわかり易く表示</li>
+    <li>平均正答率</li>
+</ul>
+
+<h2>第6章.まとめと今後の課題</h2>
+<h3>6.1:本論文のまとめ</h3>
+<h3>6.2:今後の課題</h3>
+
+<h2>謝辞</h2>
+
+<h2>参考文献</h2>

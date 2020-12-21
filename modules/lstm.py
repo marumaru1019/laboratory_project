@@ -23,11 +23,29 @@ def show(data):
 # get x,y
 # グラフ描画のためのx,yを取得
 
+def plot_g(title,x,y,start,end,save=False):
+    #データの波形の確認の式
+    #figureヲ宣言
+    flg = plt.figure()
+    flg = plt.title(title)
+    #x:0スタートなので1を追加  1あたり0.09sなので情報を追加
+    flg = plt.plot((x+1)*0.09, y)
+    flg = plt.xlabel("time[s]")
+    flg = plt.ylabel("Voltage[V]")          
+    # 0-9秒
+    flg = plt.xlim(start,end)
+    # おおよそ2.3-2.5を推移
+    flg = plt.ylim(2.0, 2.7)
+    flg = plt.show()
+    if save ==True:
+        name = input("名前を決めてください:")
+        fig.savefig("img.png")
 
 def get_xy(data):
     print("data must have only figure data")
     x = data.iloc[:, 0]
     y = data.iloc[:, 1]
+    y = y.astype("float32")
     return x, y
 
 # data.shape == >(n, 1)

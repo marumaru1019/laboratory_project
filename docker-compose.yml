@@ -1,0 +1,11 @@
+version: "3"
+services:
+  jupyterlab:
+    build: .
+    container_name: jupyterlab
+    ports:
+      - 8888:8888
+    # ホストの./noteとコンテナのmyworkを動悸する myworkがなければ作成する
+    volumes:
+      - "./note:/opt/"
+    command: jupyter lab --ip=0.0.0.0 --allow-root --LabApp.token=''

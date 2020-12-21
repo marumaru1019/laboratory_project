@@ -1,0 +1,11 @@
+pathlib
+scandir
+Keras
+opencv-python
+tensorflow
+scikit-image
+dlib
+face_recognition
+tqdm
+plaidml
+plaidml-keras
