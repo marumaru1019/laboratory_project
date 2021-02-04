@@ -14,7 +14,7 @@ const float V_OUT = 2;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(115200);
   value = 0.0;
 }
 void loop() {
@@ -30,6 +30,7 @@ void loop() {
       Serial.print(time);
       Serial.print(" ");
       Serial.println(value);
+      delay(10);
     }
   }
 }
